@@ -8,7 +8,7 @@ project-root/
 │-- config/
 │   └── database.js
 │-- controllers/
-│   └── reateTodo.js
+│   └── createTodo.js
 │-- models/
 │   └── todo.js
 │-- routes/
@@ -212,5 +212,4 @@ DATABASE_URL=mongodb://127.0.0.1:27017/ToDo
 🔹 Add **Validation & Error Handling**.
 🔹 Test APIs using **Postman** or **Thunder Client**.
 
-Would you like a hands-on challenge to practice this? 🚀
 

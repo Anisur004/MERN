@@ -134,6 +134,3 @@ Mongoose is an **ODM (Object Data Modeling) library** for MongoDB, allowing us t
 🔹 Create a **Mongoose Schema & Model** to store car data.
 🔹 Implement **CRUD operations (Create, Read, Update, Delete)**.
 🔹 Use **Postman or Thunder Client** to test API requests.
-
-Would you like a hands-on challenge to practice this? 🚀
-
