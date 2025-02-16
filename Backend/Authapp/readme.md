@@ -535,5 +535,79 @@ exports.isAdmin = (req, res, next) => {
 - `isStudent` and `isAdmin` middleware restrict access to specific user roles.
 - Protected routes ensure only authorized users can access sensitive data.
 
-This concludes my learning on authentication and authorization middleware. 🚀
+# Learning Notes - Authentication (Part 4: Cookie Parsing)
+
+## Today’s Learning: Cookie Parsing in Authentication
+
+### What is Cookie Parsing?
+Cookies are small pieces of data stored on the client-side (browser) that help in maintaining user sessions. In authentication, cookies are commonly used to store JWT (JSON Web Tokens) to manage user sessions securely.
+
+### Two Ways of Cookie Parsing:
+There are two common ways to parse cookies in a Node.js/Express application:
+
+#### 1. Using `req.headers.cookie`
+   - The `req.headers.cookie` property retrieves the raw cookie string from the request headers.
+   - This method requires manual parsing to extract values.
+
+   **Example:**
+   ```javascript
+   app.get("/read-cookie", (req, res) => {
+       const rawCookies = req.headers.cookie;
+       console.log("Raw Cookies:", rawCookies);
+       res.send("Cookies received");
+   });
+   ```
+
+#### 2. Using `cookie-parser` Middleware (Recommended)
+   - `cookie-parser` is an Express middleware that automatically parses cookies into an object.
+   - It allows easy access to cookies via `req.cookies`.
+
+   **Installation:**
+   ```sh
+   npm install cookie-parser
+   ```
+
+   **Usage in Express:**
+   ```javascript
+   const express = require("express");
+   const cookieParser = require("cookie-parser");
+
+   const app = express();
+   app.use(cookieParser()); // Middleware to parse cookies
+
+   app.get("/read-cookie", (req, res) => {
+       console.log("Cookies:", req.cookies);
+       res.send("Cookies received");
+   });
+   ```
+
+### Setting Cookies with Expiration Time:
+To set a cookie with an expiration time, we can use the `res.cookie()` method.
+
+**Example:**
+```javascript
+app.get("/set-cookie", (req, res) => {
+    res.cookie("authToken", "secureTokenValue", {
+        maxAge: 2 * 60 * 60 * 1000, // 2 hours
+        httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+        secure: true,  // Ensures the cookie is sent over HTTPS
+    });
+    res.send("Cookie has been set");
+});
+```
+
+### Time Period of Cookies:
+- `maxAge`: Defines cookie lifetime in milliseconds.
+- `expires`: Defines an exact date when the cookie should expire.
+- `session cookie`: If no expiry is set, the cookie is deleted when the browser is closed.
+
+### Summary:
+1. Cookies help manage authentication sessions.
+2. There are two ways to parse cookies: `req.headers.cookie` (manual parsing) and `cookie-parser` (recommended middleware).
+3. Cookies can be set with an expiration time using `maxAge` or `expires`.
+4. `httpOnly` and `secure` flags improve security by preventing JavaScript access and ensuring cookies are sent only over HTTPS.
+
+---
+This completes today’s learning on **Cookie Parsing in Authentication**. 🚀
+
 
