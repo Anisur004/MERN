@@ -245,7 +245,7 @@ let transporter = nodemailer.createTransport({
 ### **Step 4: Send an Email Notification**  
 ```js
 let info = await transporter.sendMail({
-    from: `CodeHelp - by Babbar`,
+    from: `Anisur  Rahman`,
     to: doc.email,
     subject: "New File Uploaded on Cloudinary",
     html: `<h2>Hello Jee</h2> <p>File Uploaded View here: <a href="${doc.imageUrl}">${doc.imageUrl}</a> </p>`,
